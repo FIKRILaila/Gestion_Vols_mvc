@@ -1,0 +1,4 @@
+Options ALL -Indexes
+RewriteEngine On 
+RewriteBase /Gestion_Vols_mvc/
+RewriteRule ^([-a-zA-Z0-9]+)$ index.php?page=$1
