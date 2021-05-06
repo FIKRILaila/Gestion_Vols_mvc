@@ -1,0 +1,68 @@
+<?php
+class VolController{
+
+    public function getAllVols(){
+        $vol = Vol::getAll();
+        return $vol;
+    }
+
+
+    public function getOneVol(){
+        if(isset($_POST['submit'])){
+            $data = array(
+                'id_v' => $_POST['id']
+            );
+            $vol = Vol::getVol($data);
+            return $vol;
+        }
+    }
+    public function deleteVol(){
+        if(isset($_POST['id'])){
+            $data['id_v'] = $_POST['id'];
+            $result = Vol::delete($data);
+            if($result === 'ok'){
+                Redirect::to('volsAdmin');
+            }else{
+                echo $resultat;
+            }
+        }
+    }
+    public function addVol(){
+        if(isset($_POST['submit'])){
+            $data = array(
+                'Depart' => $_POST['Depart'],
+                'Destination' => $_POST['Destination'],
+                'Date_Depart' => $_POST['dateDepart'],
+                'Date_Destination' => $_POST['dateDestination'],
+                'nbr_places' => $_POST['nbrPlaces'],
+            );
+            $resultat = Vol::add($data);
+            if($resultat === 'ok'){
+                Redirect::to('volsAdmin');
+            }else{
+               echo $resultat;
+            }
+
+        }
+    }
+    public function updateVol(){
+        if(isset($_POST['update'])){
+            $data = array(
+                'id_v' => $_POST['id'],
+                'Depart' => $_POST['Depart'],
+                'Destination' => $_POST['Destination'],
+                'Date_Depart' => $_POST['dateDepart'],
+                'Date_Destination' => $_POST['dateDestination'],
+                'nbr_places' => $_POST['nbrPlaces'],
+            );
+            $resultat = Vol::update($data);
+            if($resultat === 'ok'){
+                Redirect::to('volsAdmin');
+            }else{
+               echo $resultat;
+            }
+
+        }
+    }
+}
+?>

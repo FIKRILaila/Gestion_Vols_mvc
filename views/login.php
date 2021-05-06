@@ -28,7 +28,7 @@ if(isset($_POST['submit'])){
                     </form>
                 </div>
                 <div class="card-footer">
-                    <a href="<?php echo BASE_URL; ?>register" class="btn btn-link">Register</a>
+                    <p>You do not have an account ? <a href="<?php echo BASE_URL; ?>register" class="btn btn-link">Sign up</a></p>
                 </div>
             </div>
         </div>

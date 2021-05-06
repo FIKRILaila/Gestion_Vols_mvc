@@ -4,11 +4,13 @@ require_once './views/includes/header.php';
 require_once './autoload.php';
 require_once './controllers/HomeController.php';
 require_once './controllers/UserController.php';
+require_once './controllers/VolController.php';
+require_once './controllers/ReservationController.php';
 require_once './views/includes/alerts.php';
 
 
 $home = new HomeController();
-$pages = ['login', 'register','homeAdmin','homeUser','logout'];
+$pages = ['login', 'register','homeAdmin','homeUser','logout','addVol','deleteVol','updateVol','volsAdmin','adminReservation'];
 
 if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
 

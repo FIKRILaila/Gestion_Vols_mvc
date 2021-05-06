@@ -18,14 +18,12 @@ class User
     public static function login($data){
 
         try{
+            
             $query = 'SELECT * FROM user WHERE email=:email';
             $log = DB::connect()->prepare($query);
             $log->execute(array(":email"=>$data['email']));
             $user = $log->fetch(PDO::FETCH_OBJ);
             return $user;
-            if($log->execute()){
-                return 'ok';
-            }
 
         }catch(PDOException $ex){
             echo 'erreur' .$ex->getMessage();
