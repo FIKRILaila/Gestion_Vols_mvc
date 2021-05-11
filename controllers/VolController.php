@@ -5,8 +5,16 @@ class VolController{
         $vol = Vol::getAll();
         return $vol;
     }
-
-
+    public function searchVols(){
+        if(isset($_POST['search'])){
+            $data = array(
+                'Depart' => $_POST['Depart'],
+                'Destination' => $_POST['Destination'],
+            );
+            $vol = Vol::search($data);
+            return $vol;
+        }
+    }
     public function getOneVol(){
         if(isset($_POST['submit'])){
             $data = array(
@@ -16,7 +24,6 @@ class VolController{
             return $vol;
         }
     }
-    
     public function getOneVolR(){
         if(isset($_POST['book'])){
             $data = array(
@@ -31,6 +38,7 @@ class VolController{
             $data['id_v'] = $_POST['id'];
             $result = Vol::delete($data);
             if($result === 'ok'){
+                Session::set('error','Vous avez supprimer un vol');
                 Redirect::to('volsAdmin');
             }else{
                 echo $resultat;
@@ -51,7 +59,7 @@ class VolController{
             );
             $resultat = Vol::add($data);
             if($resultat === 'ok'){
-                // Session::set();
+                Session::set('success','Vous avez ajouter un vol');
                 Redirect::to('volsAdmin');
             }else{
                echo $resultat;
@@ -73,6 +81,7 @@ class VolController{
             );
             $resultat = Vol::update($data);
             if($resultat === 'ok'){
+                Session::set('success','Vous avez modifier un vol');
                 Redirect::to('volsAdmin');
             }else{
                echo $resultat;

@@ -18,6 +18,7 @@ class ReservationController{
         if(isset($_POST['id'])){ 
             $result = Reservation::delete($_POST['id']);
             if($result === 'ok'){
+                Session::set('error','Votre reservation a été supprimer');
                 Redirect::to('mesReservation');
             }else{
                 echo $resultat;
@@ -32,7 +33,6 @@ class ReservationController{
             $vol = $vol->getOneVolR();
             $nbr = $_POST['nbr_person'];
             $result = Reservation::add($vol,$nbr);
-            // Redirect::to('mesReservation');
             return $result;
         }
         

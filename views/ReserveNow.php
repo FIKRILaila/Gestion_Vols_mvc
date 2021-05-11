@@ -1,11 +1,15 @@
 <?php
-
 if(isset($_POST['submit'])){
     $vol = new VolController();
     $vol = $vol->getOneVol();
 }
+if(isset($_POST['book'])){
+    $newRes = new ReservationController();
+    $id_r = $newRes->newReservation();
+    $pass = new PassagerController();
+    $pass->addPassager($id_r);
+}
 ?>
-
 <div class="container">
     <div class="row my-4">
         <div class="col-md-12 mx-auto">
@@ -19,25 +23,21 @@ if(isset($_POST['submit'])){
                     </p>
             </div>
             <div class="card-body bg-light">
-                    
-                    <form method="post" class="mr-1" action="book">
-
-                        <input type="hidden" name="id_v" value="<?php echo $vol->id_v;?>">
-
-                        <div class="form-group mb-4">
-                            <label for="nbr_person" class="mb-1">Reservation pour combien de person:</label>
-                            <input type="number" min="1" name="nbr_person" id="nbr_person" class="form-control">
-                        </div>
-                        
-                        <div class="form-group mb-4" id="passager"></div>
-                            
-                        <button name="book" class="btn btn-sm btn-primary">Reserve</button>
-                    </form>
-                </div>
+                <form method="post" class="mr-1">
+                    <input type="hidden" name="id_v" value="<?php echo $vol->id_v;?>">
+                    <div class="form-group mb-4">
+                        <label for="nbr_person" class="mb-1">Reservation pour combien de person:</label>
+                        <input type="number" min="1" name="nbr_person" id="nbr_person" class="form-control">
+                    </div>
+                    <div class="form-group mb-4" id="passager"></div>
+                    <button name="book" class="btn btn-sm btn-primary">Reserve</button>
+                </form>
+            </div>
            </div>
         </div>
     </div>
 </div>
+
 
 
 <script src="./public/book.js"></script>

@@ -9,6 +9,13 @@ class Vol{
         $vol = null;
     }
 
+    static public function search($data){
+        $vol = DB::connect()->prepare('SELECT * FROM vol WHERE Depart = ? AND Destination = ?');
+        $vol->execute(array($data['Depart'],$data['Destination']));
+        return $vol->fetchAll();
+        $vol = null;
+    }
+
     static public function getVol($data){
         try{
             $query = 'SELECT * FROM vol WHERE id_v = :id_v ';

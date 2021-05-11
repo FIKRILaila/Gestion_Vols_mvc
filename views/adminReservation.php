@@ -1,22 +1,15 @@
-
 <?php
-
     $data = new ReservationController();
     $allReservation =$data->getAllReservations();
 ?>
-
- <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
-       
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="homeAdmin">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="volsAdmin">Vols</a></li>
                 <li class="nav-item bg-secondary"><a class="nav-link" href="adminReservation">Reservations</a></li>
                 <li class="nav-item"><a class="nav-link" href="logout"><i class="fa fa-user mr-2"> Log Out</i></a></li>
             </ul>
-
 </nav>
-
-
 <div class="container">
     <div class="row my-4">
         <div class="col-md-12 mx-auto">
@@ -32,7 +25,6 @@
                         <th scope="col">Origin</th>
                         <th scope="col">Destination</th>
                         <th scope="col">type</th>
-                        
                     </tr>
                 </thead>
                 <tbody>

@@ -12,6 +12,7 @@ class PassagerController{
                 $data['dateNaiss'.$i] = $_POST['dateNaiss'.$i];
             }
             Passager::add($data,$id_r);
+            Session::set('success','Votre avez passer votre reservation avec succes');
             Redirect::to('mesReservation');
         }
        

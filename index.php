@@ -7,10 +7,8 @@ require_once './controllers/UserController.php';
 require_once './controllers/VolController.php';
 require_once './controllers/ReservationController.php';
 require_once './views/includes/alerts.php';
-
-
 $home = new HomeController();
-$pages = ['login', 'register','homeAdmin','homeUser','logout','addVol','deleteVol','updateVol','volsAdmin','adminReservation','volsUser','mesReservation','ReserveNow','updateReservation','deleteReservation','book'];
+$pages = ['login', 'register','homeAdmin','homeUser','logout','addVol','deleteVol','updateVol','volsAdmin','adminReservation','volsUser','mesReservation','ReserveNow','updateReservation','deleteReservation'];
 
 if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
 

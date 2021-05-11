@@ -1,7 +1,7 @@
 
 
 form = document.querySelector("#passager");
-document.querySelector("#nbr_person").addEventListener("keyup",function(){
+document.querySelector("#nbr_person").addEventListener("input",function(){
     var nbr=document.querySelector("#nbr_person").value;
     
     for(i=0;i<nbr;i++){
