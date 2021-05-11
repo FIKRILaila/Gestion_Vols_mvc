@@ -1,10 +1,12 @@
+
 <?php
-if(isset($_POST['submit'])){
-    $newVol = new VolController();
-    $newVol->addVol();
-}
-   
-?>
+
+    if(isset($_POST['submit'])){
+        $newVol = new VolController();
+        $newVol->addVol();
+    }
+?> 
+
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
        
@@ -12,9 +14,8 @@ if(isset($_POST['submit'])){
            <li class="nav-item"><a class="nav-link" href="homeAdmin">Home</a></li>
            <li class="nav-item bg-secondary"><a class="nav-link" href="volsAdmin">Vols</a></li>
            <li class="nav-item"><a class="nav-link" href="adminReservation">Reservations</a></li>
+           <li class="nav-item"><a class="nav-link" href="logout"><i class="fa fa-user mr-2"> Log Out</i></a></li>
        </ul>
-
-
 </nav>
 
 <div class="container">
@@ -46,6 +47,21 @@ if(isset($_POST['submit'])){
                     <label for="dateDestination" class="mb-1">Date de destination</label>
                     <input type="datetime-local" name="dateDestination" id="dateDestination" class="form-control" required>
                 </div>
+            
+                <div class="form-group mb-3 flex flex-row">
+                        
+                        <input type="radio" id="aller-simple" name="type" value="aller-simple" checked required>
+                        <label for="aller-simple" class="mb-1">aller-simple</label>
+                   
+                        <input type="radio" id="aller-retour" name="type" value="aller-retour" required>
+                        <label for="aller-retour" class="mb-1">aller-retour </label>
+                   
+                </div>
+                
+                <div class="form-group mb-3" style="display:none;" id=show_type>
+                    <label for="dateRetour" class="mb-1">Date de retour</label>
+                    <input type="datetime-local" name="dateRetour" id="dateRetour" class="form-control">
+                </div>
 
                 <div class="form-group mb-3">
                     <label for="nbrPlaces" class="mb-1">Nombre de places</label>
@@ -62,3 +78,4 @@ if(isset($_POST['submit'])){
         </div>
     </div>
 </div>
+<script src="./public/main.js"></script>

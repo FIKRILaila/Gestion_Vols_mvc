@@ -10,7 +10,7 @@ require_once './views/includes/alerts.php';
 
 
 $home = new HomeController();
-$pages = ['login', 'register','homeAdmin','homeUser','logout','addVol','deleteVol','updateVol','volsAdmin','adminReservation'];
+$pages = ['login', 'register','homeAdmin','homeUser','logout','addVol','deleteVol','updateVol','volsAdmin','adminReservation','volsUser','mesReservation','ReserveNow','updateReservation','deleteReservation','book'];
 
 if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
 

@@ -4,12 +4,12 @@
 ?>
 
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark ">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
        
        <ul class="navbar-nav">
-           <li class="nav-item"><a class="nav-link" href="homeAdmin">Home</a></li>
-           <li class="nav-item bg-secondary"><a class="nav-link" href="volsAdmin">Vols</a></li>
-           <li class="nav-item"><a class="nav-link" href="adminReservation">Reservations</a></li>
+           <li class="nav-item" ><a class="nav-link" href="homeUser">Home</a></li>
+           <li class="nav-item bg-secondary"><a class="nav-link" href="volsUser">Vols</a></li>
+           <li class="nav-item"><a class="nav-link" href="mesReservation">Mes Reservations</a></li>
            <li class="nav-item"><a class="nav-link" href="logout"><i class="fa fa-user mr-2"> Log Out</i></a></li>
        </ul>
 
@@ -20,8 +20,8 @@
         <div class="col-md-12 mx-auto">
            <div class="card">
            <div class="card-body bg-light">
-           <a href="<?php echo BASE_URL;?>addVol" class="btn btn-sm btn-primary mb-4 mr-2"><i class="fa fa-plus"></i></a>
            <table class="table table-hover">
+               
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -35,6 +35,7 @@
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     <?php foreach($vol as $v):?>
                         <tr>
@@ -47,13 +48,10 @@
                             <td><?php echo $v['Date_Retour']; ?></td>
                             <td><?php echo $v['type']; ?></td>
                             <td class="d-flex flex-row">
-                                <form method="post" class="mx-2" action="updateVol">
+                                <form method="post" class="mx-2" action="ReserveNow">
                                     <input type="hidden" name="id" value="<?php echo $v['id_v'];?>">
-                                    <button name="submit" class="btn btn-sm btn btn-warning"><i class="fa fa-edit"></i></button>
-                                </form>
-                                <form method="post" class="mr-1" action="deleteVol">
-                                    <input type="hidden" name="id" value="<?php echo $v['id_v'];?>">
-                                    <button name="submit" class="btn btn-sm btn btn-danger"><i class="fa fa-trash"></i></button>
+
+                                    <button name="submit" type="submit" class="btn btn-sm btn btn-info">book now</button>
                                 </form>
                             </td>
                         </tr>

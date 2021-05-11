@@ -23,9 +23,16 @@ class Vol{
     }
 
     static public function add($data){
-        $newVol = DB::connect()->prepare('INSERT INTO vol (Depart,Destination,nbr_places,Date_Depart,Date_Destination) VALUES (:Depart,:Destination,:nbr_places,:Date_Depart,:Date_Destination)');
+        if($data['type']==="aller-simple"){
+            $newVol = DB::connect()->prepare('INSERT INTO vol (Depart,Destination,nbr_places,Date_Depart,Date_Destination,Date_Retour,type) VALUES (:Depart,:Destination,:nbr_places,:Date_Depart,:Date_Destination,NULL,:type)');
     
-        $newVol = $newVol->execute(array(":Depart"=>$data['Depart'],":Destination"=>$data['Destination'],":nbr_places"=>$data['nbr_places'],":Date_Depart"=>$data['Date_Depart'],":Date_Destination"=>$data['Date_Destination']));
+            $newVol = $newVol->execute(array(":Depart"=>$data['Depart'],":Destination"=>$data['Destination'],":nbr_places"=>$data['nbr_places'],":Date_Depart"=>$data['Date_Depart'],":Date_Destination" => $data['Date_Destination'],":type" => $data['type']));
+        }else{
+            $newVol = DB::connect()->prepare('INSERT INTO vol (Depart,Destination,nbr_places,Date_Depart,Date_Destination,Date_Retour,type) VALUES (:Depart,:Destination,:nbr_places,:Date_Depart,:Date_Destination,:Date_Retour,:type)');
+    
+            $newVol = $newVol->execute(array(":Depart"=>$data['Depart'],":Destination"=>$data['Destination'],":nbr_places"=>$data['nbr_places'],":Date_Depart"=>$data['Date_Depart'],":Date_Destination"=>$data['Date_Destination'],":Date_Retour"=>$data['Date_Retour'],":type"=>$data['type']));
+        }
+        
         if($newVol){
             return 'ok';
         }else{
@@ -35,9 +42,19 @@ class Vol{
 
     }
     static public function update($data){
-        $newVol = DB::connect()->prepare('UPDATE vol SET Depart = :Depart ,Destination = :Destination, nbr_places = :nbr_places ,Date_Depart = :Date_Depart ,Date_Destination = :Date_Destination WHERE id_v = :id_v');
+        if($data['type']==="aller-simple"){
+
+            $newVol = DB::connect()->prepare('UPDATE vol SET Depart = :Depart ,Destination = :Destination, nbr_places = :nbr_places ,Date_Depart = :Date_Depart ,Date_Destination = :Date_Destination, Date_Retour = NULL,type = :type  WHERE id_v = :id_v');
     
-        $newVol = $newVol->execute(array(":Depart"=>$data['Depart'],":Destination"=>$data['Destination'],":nbr_places"=>$data['nbr_places'],":Date_Depart"=>$data['Date_Depart'],":Date_Destination"=>$data['Date_Destination'],":id_v"=>$data['id_v']));
+            $newVol = $newVol->execute(array(":Depart"=>$data['Depart'],":Destination"=>$data['Destination'],":nbr_places"=>$data['nbr_places'],":Date_Depart"=>$data['Date_Depart'],":Date_Destination"=>$data['Date_Destination'],":id_v"=>$data['id_v'],":type"=>$data['type']));
+        
+        }else{
+
+            $newVol = DB::connect()->prepare('UPDATE vol SET Depart = :Depart ,Destination = :Destination, nbr_places = :nbr_places ,Date_Depart = :Date_Depart ,Date_Destination = :Date_Destination, Date_Retour = :Date_Retour,type = :type  WHERE id_v = :id_v');
+    
+            $newVol = $newVol->execute(array(":Depart"=>$data['Depart'],":Destination"=>$data['Destination'],":nbr_places"=>$data['nbr_places'],":Date_Depart"=>$data['Date_Depart'],":Date_Destination"=>$data['Date_Destination'],":id_v"=>$data['id_v'],":Date_Retour"=>$data['Date_Retour'],":type"=>$data['type']));
+        }
+        
         if($newVol){
             return 'ok';
         }else{

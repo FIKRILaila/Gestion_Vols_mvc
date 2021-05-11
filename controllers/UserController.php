@@ -8,9 +8,11 @@ class UserController{
             $data['email'] = $_POST['email'];
             $result = User::login($data);
             if($result->email === $_POST['email'] && password_verify($_POST['password'],$result->password)){
+            // die($result->nom."ddd");
                 $_SESSION['logged'] = true ;
-                $_SESSION['email'] = $result->email ;
+                $_SESSION['nom'] = $result->nom;
                 $_SESSION['Role'] = $result->Role;
+                $_SESSION['id_u'] = $result->id_u;
                 if($result->Role === "admin"){
                     Redirect::to('homeAdmin');
                 }

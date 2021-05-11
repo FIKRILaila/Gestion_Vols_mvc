@@ -16,6 +16,16 @@ class VolController{
             return $vol;
         }
     }
+    
+    public function getOneVolR(){
+        if(isset($_POST['book'])){
+            $data = array(
+                'id_v' => $_POST['id_v']
+            );
+            $vol = Vol::getVol($data);
+            return $vol;
+        }
+    }
     public function deleteVol(){
         if(isset($_POST['id'])){
             $data['id_v'] = $_POST['id'];
@@ -35,9 +45,13 @@ class VolController{
                 'Date_Depart' => $_POST['dateDepart'],
                 'Date_Destination' => $_POST['dateDestination'],
                 'nbr_places' => $_POST['nbrPlaces'],
+                'Date_Retour' => $_POST['dateRetour'],
+                'type' => $_POST['type'],
+
             );
             $resultat = Vol::add($data);
             if($resultat === 'ok'){
+                // Session::set();
                 Redirect::to('volsAdmin');
             }else{
                echo $resultat;
@@ -54,6 +68,8 @@ class VolController{
                 'Date_Depart' => $_POST['dateDepart'],
                 'Date_Destination' => $_POST['dateDestination'],
                 'nbr_places' => $_POST['nbrPlaces'],
+                'Date_Retour' => $_POST['dateRetour'],
+                'type' => $_POST['type'],
             );
             $resultat = Vol::update($data);
             if($resultat === 'ok'){
