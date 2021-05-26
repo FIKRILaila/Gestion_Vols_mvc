@@ -8,7 +8,7 @@ require_once './controllers/VolController.php';
 require_once './controllers/ReservationController.php';
 require_once './views/includes/alerts.php';
 $home = new HomeController();
-$pages = ['login', 'register','homeAdmin','homeUser','logout','addVol','deleteVol','updateVol','volsAdmin','adminReservation','volsUser','mesReservation','ReserveNow','updateReservation','deleteReservation'];
+$pages = ['login', 'register','logout','addVol','deleteVol','updateVol','volsAdmin','adminReservation','volsUser','mesReservation','ReserveNow','updateReservation','deleteReservation'];
 
 if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
 
@@ -20,9 +20,9 @@ if (isset($_SESSION['logged']) && $_SESSION['logged'] === true) {
             require_once './views/includes/404.php';
         }
     } else if($_SESSION['Role'] === "admin"){
-                $home->index('homeAdmin');
+                $home->index('volsAdmin');
             }else{
-                $home->index('homeUser');
+                $home->index('volsUser');
             }
 
 } else if (isset($_GET['page']) && $_GET['page'] === 'register'){
